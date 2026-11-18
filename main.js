@@ -16,11 +16,21 @@ const ghost = new Ghost(
     ]
 );
 
+const event_rules= [
+    new Rule("E1", "Airball event", "Witness and airball event.")
+    ];
+
+const hunt_rules = [
+    new Rule("H1", "Freezing breath", "Ghost has freezing breath during hunt.")
+    ];
+
+const behaviour_rules = [
+    new Rule("B1", "Shut exit doors", "Witness the ghost shut exit doors outside an event.")
+    ];
+
 
 // Main function
 function main() {
-
-    createRules();
     // Display ghost name
     document.getElementById("ghost-name").textContent = ghost.name;
 
@@ -33,20 +43,6 @@ function main() {
     updateScore();
 }
 
-function createRules() {
-    // Testing
-    event_rules= [
-    new Rule("E1", "Airball event", "Witness and airball event.")
-    ]
-
-    hunt_rules = [
-    new Rule("H1", "Freezing breath", "Ghost has freezing breath during hunt.")
-    ];
-
-    behaviour_rules = [
-    new Rule("B1", "Shut exit doors", "Witness the ghost shut exit doors outside an event.")
-    ];
-}
 // Display rules
 function displayRules(rules, containerId) {
 
