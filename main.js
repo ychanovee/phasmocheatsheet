@@ -17,17 +17,30 @@ const ghost = new Ghost(
 );
 
 const event_rules= [
-    new Rule("E1", "Airball event", "Witness and airball event.")
+    new Rule("E1", "Airball event", "Witness and airball event."),
+    new Rule("E2", "Photo of ghost appears blank",
+        "Photo taken of ghost during even appears blank but still counts as evidence."),
+    new Rule("E3", "Several objects flung at once",
+        "Witness event where several objects are flung at once, like an explosion of objects.")
     ];
 
 const hunt_rules = [
-    new Rule("H1", "Freezing breath", "Ghost has freezing breath during hunt.")
+    new Rule("H1", "Freezing breath", "Ghost has freezing breath during hunt."),
+    new Rule("H2", "Quiet ghost", "Ghost is difficult to hear unless nearby."),
+    new Rule("H3", "Highly visibe ghost", "Ghost does not 'blink' as much as usual")
     ];
 
 const behaviour_rules = [
-    new Rule("B1", "Shut exit doors", "Witness the ghost shut exit doors outside an event.")
+    new Rule("B1", "Shut exit doors", "Witness the ghost shut exit doors outside an event."),
+    new Rule("B2", "Turned off breaker", "Ghost turned off breaker."),
+    new Rule("B3", "Wandering ghost", "Ghost leaves its favourite room.")
     ];
 
+const ghosts = [
+    new Ghost("Phantom", [event_rules.at(2)], [hunt_rules.at(2)]),
+    new Ghost("Jinn", [behaviour_rules.at(1)]),
+    new Ghost("Random ghost", [event_rules.at(0), behaviour_rules.at(2)], [hunt_rules.at(1)])
+]
 
 // Main function
 function main() {
@@ -42,20 +55,7 @@ function main() {
     updateScore();
 }
 
-function createRules() {
-    // Testing
-    event_rules= [
-    new Rule("E1", "Airball event", "Witness and airball event.")
-    ]
 
-    hunt_rules = [
-    new Rule("H1", "Freezing breath", "Ghost has freezing breath during hunt.")
-    ];
-
-    behaviour_rules = [
-    new Rule("B1", "Shut exit doors", "Witness the ghost shut exit doors outside an event.")
-    ];
-}
 // Display rules
 function displayRules(rules, containerId) {
 
@@ -83,7 +83,6 @@ function displayRules(rules, containerId) {
         container.appendChild(button);
     }
 }
-
 
 // Update score
 function updateScore() {
