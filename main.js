@@ -1,0 +1,77 @@
+const rule = new Rule(
+
+)
+const ghost = new Ghost(
+    "Phantom",
+
+    [
+        new Rule("1", "Freezing Temperatures", "The room becomes cold."),
+        new Rule("2", "Ghost Orbs", "Floating balls of light appear."),
+        new Rule("3", "Spirit Box", "The ghost communicates through a spirit box.")
+    ],
+
+    [
+        new Rule("4", "Writing", "The ghost writes in a journal."),
+        new Rule("5", "Fingerprints", "Fingerprints appear on surfaces.")
+    ]
+);
+
+
+// Main function
+function main() {
+
+    // Display ghost name
+    document.getElementById("ghost-name").textContent = ghost.name;
+
+    // Display rules
+    displayRules(ghost.rules, "ghost-rules");
+    displayRules(ghost.notRules, "not-rules");
+
+    // Display initial score
+    updateScore();
+}
+
+function createRules() {
+    new Rule("E1", "Airball event", "Witness and airball event.", "Events");
+}
+// Display rules
+function displayRules(rules, containerId) {
+
+    const container = document.getElementById(containerId);
+
+    container.innerHTML = "";
+
+    for (const rule of rules) {
+
+        const button = document.createElement("button");
+
+        button.textContent = rule.name;
+        button.classList.add("rule-button");
+
+        button.addEventListener("click", () => {
+
+            observeRule(rule);
+
+            button.classList.toggle("observed", rule.observed);
+
+            updateScore();
+
+        });
+
+        container.appendChild(button);
+    }
+}
+
+
+// Update score
+function updateScore() {
+
+    const percentage = evaluateGhost(ghost);
+
+    document.getElementById("percentage").textContent =
+        percentage.toFixed(1) + "%";
+}
+
+
+// Run application when page loads
+document.addEventListener("DOMContentLoaded", main);
