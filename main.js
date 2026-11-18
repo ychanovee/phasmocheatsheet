@@ -51,6 +51,7 @@ function main() {
     displayRules(event_rules, "event-rules");
     displayRules(hunt_rules, "hunt-rules");
 
+    displayGhosts(ghosts, "ghosts")
     // Display initial score
     updateScore();
 }
@@ -79,6 +80,21 @@ function displayRules(rules, containerId) {
             updateScore();
 
         });
+
+        container.appendChild(button);
+    }
+}
+function displayGhosts(ghost_list, containerId) {
+    const container = document.getElementById(containerId);
+
+    container.innerHTML = "";
+
+    for (const ghost of ghost_list) {
+
+        const button = document.createElement("button");
+
+        button.textContent = ghost.name + ghost.points;
+        button.classList.add("ghost-button");
 
         container.appendChild(button);
     }
