@@ -20,19 +20,32 @@ const ghost = new Ghost(
 // Main function
 function main() {
 
+    createRules();
     // Display ghost name
     document.getElementById("ghost-name").textContent = ghost.name;
 
     // Display rules
-    displayRules(ghost.rules, "ghost-rules");
-    displayRules(ghost.notRules, "not-rules");
+    displayRules(behaviour_rules, "behaviour-rules")
+    displayRules(event_rules, "event-rules");
+    displayRules(hunt_rules, "hunt-rules");
 
     // Display initial score
     updateScore();
 }
 
 function createRules() {
-    new Rule("E1", "Airball event", "Witness and airball event.", "Events");
+    // Testing
+    event_rules= [
+    new Rule("E1", "Airball event", "Witness and airball event.")
+    ]
+
+    hunt_rules = [
+    new Rule("H1", "Freezing breath", "Ghost has freezing breath during hunt.")
+    ];
+
+    behaviour_rules = [
+    new Rule("B1", "Shut exit doors", "Witness the ghost shut exit doors outside an event.")
+    ];
 }
 // Display rules
 function displayRules(rules, containerId) {
