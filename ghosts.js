@@ -25,18 +25,22 @@ function evaluateGhost(ghost) {
             ghost.points++;
         }
     }
-
+    if (ghost.notRules.length>0) {
     for (const rule of ghost.notRules) {
         if (rule.observed) {
             ghost.points--;
         }
-    }
+    }}
 
     if (ghost.maxPoints === 0) return 0;
 
+    return((ghost.points / ghost.maxPoints) * 100);
+    /*
     return Math.max(0, Math.min(100,
         (ghost.points / ghost.maxPoints) * 100
-    ));
+        ));
+     */
+
 }
 
 function observeRule(rule) {

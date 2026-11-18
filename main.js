@@ -38,8 +38,8 @@ const behaviour_rules = [
 
 const ghosts = [
     new Ghost("Phantom", [event_rules.at(2)], [hunt_rules.at(2)]),
-    new Ghost("Jinn", [behaviour_rules.at(1)]),
-    new Ghost("Random ghost", [event_rules.at(0), behaviour_rules.at(2)], [hunt_rules.at(1)])
+    new Ghost("Jinn", [behaviour_rules.at(1)], []),
+    new Ghost("Randomghost", [event_rules.at(0), behaviour_rules.at(2)], [hunt_rules.at(1)])
 ]
 
 // Main function
@@ -92,7 +92,7 @@ function displayGhosts(ghost_list, containerId) {
     for (const ghost of ghost_list) {
 
         const button = document.createElement("button");
-
+        button.name= ghost.name;
         button.textContent = ghost.name + ghost.points;
         button.classList.add("ghost-button");
 
@@ -101,12 +101,16 @@ function displayGhosts(ghost_list, containerId) {
 }
 
 // Update score
+// Figure out how to update scores on html
 function updateScore() {
-
-    const percentage = evaluateGhost(ghost);
-
+    for (const ghost of ghosts) {
+        evaluateGhost(ghost);
+        document.getElementById("percentage").textContent =
+            ghost.points;
+    }
+    /*
     document.getElementById("percentage").textContent =
-        percentage.toFixed(1) + "%";
+        percentage.toFixed(1) + "%";*/
 }
 
 
